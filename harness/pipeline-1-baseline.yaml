@@ -12,13 +12,9 @@ pipeline:
         build: <+input>
   stages:
     - stage:
-        name: Build All Apps - Today's Setup
+        name: Build All Apps Today Setup
         identifier: Build_All_Apps_Today
-        description: >-
-          One stage, one agent, no caching. Builds app-a, app-b, and app-c
-          one after another - this mirrors Campspot's current experience:
-          3 of 12 layers restoring, and every parallel JS build queued on a
-          single agent.
+        description: "One stage, one agent, no caching. Builds app-a, app-b, and app-c one after another - this mirrors Campspot's current experience: 3 of 12 layers restoring, and every parallel JS build queued on a single agent."
         type: CI
         spec:
           cloneCodebase: true
@@ -34,7 +30,7 @@ pipeline:
             steps:
               - step:
                   type: BuildAndPushDockerRegistry
-                  name: Build app-a (no cache)
+                  name: Build app a no cache
                   identifier: build_app_a_baseline
                   spec:
                     connectorRef: campspotdemoghcr
@@ -48,7 +44,7 @@ pipeline:
                       PLUGIN_NO_PUSH: "true"
               - step:
                   type: BuildAndPushDockerRegistry
-                  name: Build app-b (no cache)
+                  name: Build app b no cache
                   identifier: build_app_b_baseline
                   spec:
                     connectorRef: campspotdemoghcr
@@ -62,7 +58,7 @@ pipeline:
                       PLUGIN_NO_PUSH: "true"
               - step:
                   type: BuildAndPushDockerRegistry
-                  name: Build app-c (no cache)
+                  name: Build app c no cache
                   identifier: build_app_c_baseline
                   spec:
                     connectorRef: campspotdemoghcr
