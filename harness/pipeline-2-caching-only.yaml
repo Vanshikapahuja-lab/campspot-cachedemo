@@ -40,9 +40,10 @@ pipeline:
                     caching: true
                     tags:
                       - cached-<+pipeline.sequenceId>
+                    buildArgs:
+                      BUILDKIT_INLINE_CACHE: "1"
                     envVariables:
                       PLUGIN_NO_PUSH: "true"
-                      PLUGIN_BUILDX_OPTIONS: "--build-arg BUILDKIT_INLINE_CACHE=1"
               - step:
                   type: BuildAndPushDockerRegistry
                   name: Build app b cached
@@ -55,9 +56,10 @@ pipeline:
                     caching: true
                     tags:
                       - cached-<+pipeline.sequenceId>
+                    buildArgs:
+                      BUILDKIT_INLINE_CACHE: "1"
                     envVariables:
                       PLUGIN_NO_PUSH: "true"
-                      PLUGIN_BUILDX_OPTIONS: "--build-arg BUILDKIT_INLINE_CACHE=1"
               - step:
                   type: BuildAndPushDockerRegistry
                   name: Build app c cached
@@ -70,6 +72,7 @@ pipeline:
                     caching: true
                     tags:
                       - cached-<+pipeline.sequenceId>
+                    buildArgs:
+                      BUILDKIT_INLINE_CACHE: "1"
                     envVariables:
                       PLUGIN_NO_PUSH: "true"
-                      PLUGIN_BUILDX_OPTIONS: "--build-arg BUILDKIT_INLINE_CACHE=1"
