@@ -12,12 +12,9 @@ pipeline:
         build: <+input>
   stages:
     - stage:
-        name: Build All Apps - Caching On, Still One Agent
+        name: Build All Apps Caching On  Still One Agent
         identifier: Build_All_Apps_Caching_Only
-        description: >-
-          Same single-stage, single-agent layout as the baseline, but with
-          Docker Layer Caching and the cache mount turned on. This isolates
-          exactly what caching alone contributes, before adding parallelism.
+        description: Same single-stage, single-agent layout as the baseline, but with Docker Layer Caching and the cache mount turned on. This isolates exactly what caching alone contributes, before adding parallelism.
         type: CI
         spec:
           cloneCodebase: true
@@ -33,7 +30,7 @@ pipeline:
             steps:
               - step:
                   type: BuildAndPushDockerRegistry
-                  name: Build app-a (cached)
+                  name: Build app a cached
                   identifier: build_app_a_cached
                   spec:
                     connectorRef: campspotdemoghcr
@@ -48,7 +45,7 @@ pipeline:
                       PLUGIN_BUILDX_OPTIONS: "--build-arg BUILDKIT_INLINE_CACHE=1"
               - step:
                   type: BuildAndPushDockerRegistry
-                  name: Build app-b (cached)
+                  name: Build app b cached
                   identifier: build_app_b_cached
                   spec:
                     connectorRef: campspotdemoghcr
@@ -63,7 +60,7 @@ pipeline:
                       PLUGIN_BUILDX_OPTIONS: "--build-arg BUILDKIT_INLINE_CACHE=1"
               - step:
                   type: BuildAndPushDockerRegistry
-                  name: Build app-c (cached)
+                  name: Build app c cached
                   identifier: build_app_c_cached
                   spec:
                     connectorRef: campspotdemoghcr
