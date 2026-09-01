@@ -1,0 +1,15 @@
+{
+  "name": "app-c",
+  "version": "1.0.0",
+  "description": "Demo app C - used to show Docker layer caching and parallel builds",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"no tests - demo app\" && exit 0"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "uuid": "^9.0.1",
+    "dotenv": "^16.4.5"
+  }
+}

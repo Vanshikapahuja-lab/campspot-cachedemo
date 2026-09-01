@@ -1,0 +1,76 @@
+pipeline:
+  name: dlc-demo-1-baseline
+  identifier: dlc_demo_1_baseline
+  projectIdentifier: YOUR_PROJECT_ID
+  orgIdentifier: YOUR_ORG_ID
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: YOUR_CODE_REPO_CONNECTOR_ID
+        repoName: YOUR_REPO_NAME
+        build: <+input>
+  stages:
+    - stage:
+        name: Build All Apps - Today's Setup
+        identifier: Build_All_Apps_Today
+        description: >-
+          One stage, one agent, no caching. Builds app-a, app-b, and app-c
+          one after another - this mirrors Campspot's current experience:
+          3 of 12 layers restoring, and every parallel JS build queued on a
+          single agent.
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: false
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: Build app-a (no cache)
+                  identifier: build_app_a_baseline
+                  spec:
+                    connectorRef: YOUR_GHCR_CONNECTOR_ID
+                    repo: ghcr.io/YOUR_GITHUB_USERNAME/dlc-demo-app-a
+                    dockerfile: app-a/Dockerfile
+                    context: app-a
+                    caching: false
+                    tags:
+                      - baseline-<+pipeline.sequenceId>
+                    envVariables:
+                      PLUGIN_NO_PUSH: "true"
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: Build app-b (no cache)
+                  identifier: build_app_b_baseline
+                  spec:
+                    connectorRef: YOUR_GHCR_CONNECTOR_ID
+                    repo: ghcr.io/YOUR_GITHUB_USERNAME/dlc-demo-app-b
+                    dockerfile: app-b/Dockerfile
+                    context: app-b
+                    caching: false
+                    tags:
+                      - baseline-<+pipeline.sequenceId>
+                    envVariables:
+                      PLUGIN_NO_PUSH: "true"
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: Build app-c (no cache)
+                  identifier: build_app_c_baseline
+                  spec:
+                    connectorRef: YOUR_GHCR_CONNECTOR_ID
+                    repo: ghcr.io/YOUR_GITHUB_USERNAME/dlc-demo-app-c
+                    dockerfile: app-c/Dockerfile
+                    context: app-c
+                    caching: false
+                    tags:
+                      - baseline-<+pipeline.sequenceId>
+                    envVariables:
+                      PLUGIN_NO_PUSH: "true"

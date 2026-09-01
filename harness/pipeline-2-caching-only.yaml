@@ -1,0 +1,78 @@
+pipeline:
+  name: dlc-demo-2-caching-only
+  identifier: dlc_demo_2_caching_only
+  projectIdentifier: YOUR_PROJECT_ID
+  orgIdentifier: YOUR_ORG_ID
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: YOUR_CODE_REPO_CONNECTOR_ID
+        repoName: YOUR_REPO_NAME
+        build: <+input>
+  stages:
+    - stage:
+        name: Build All Apps - Caching On, Still One Agent
+        identifier: Build_All_Apps_Caching_Only
+        description: >-
+          Same single-stage, single-agent layout as the baseline, but with
+          Docker Layer Caching and the cache mount turned on. This isolates
+          exactly what caching alone contributes, before adding parallelism.
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: Build app-a (cached)
+                  identifier: build_app_a_cached
+                  spec:
+                    connectorRef: YOUR_GHCR_CONNECTOR_ID
+                    repo: ghcr.io/YOUR_GITHUB_USERNAME/dlc-demo-app-a
+                    dockerfile: app-a/Dockerfile.cachemount
+                    context: app-a
+                    caching: true
+                    tags:
+                      - cached-<+pipeline.sequenceId>
+                    envVariables:
+                      PLUGIN_NO_PUSH: "true"
+                      PLUGIN_BUILDX_OPTIONS: "--build-arg BUILDKIT_INLINE_CACHE=1"
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: Build app-b (cached)
+                  identifier: build_app_b_cached
+                  spec:
+                    connectorRef: YOUR_GHCR_CONNECTOR_ID
+                    repo: ghcr.io/YOUR_GITHUB_USERNAME/dlc-demo-app-b
+                    dockerfile: app-b/Dockerfile.cachemount
+                    context: app-b
+                    caching: true
+                    tags:
+                      - cached-<+pipeline.sequenceId>
+                    envVariables:
+                      PLUGIN_NO_PUSH: "true"
+                      PLUGIN_BUILDX_OPTIONS: "--build-arg BUILDKIT_INLINE_CACHE=1"
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: Build app-c (cached)
+                  identifier: build_app_c_cached
+                  spec:
+                    connectorRef: YOUR_GHCR_CONNECTOR_ID
+                    repo: ghcr.io/YOUR_GITHUB_USERNAME/dlc-demo-app-c
+                    dockerfile: app-c/Dockerfile.cachemount
+                    context: app-c
+                    caching: true
+                    tags:
+                      - cached-<+pipeline.sequenceId>
+                    envVariables:
+                      PLUGIN_NO_PUSH: "true"
+                      PLUGIN_BUILDX_OPTIONS: "--build-arg BUILDKIT_INLINE_CACHE=1"

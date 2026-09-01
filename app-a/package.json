@@ -1,0 +1,14 @@
+{
+  "name": "app-a",
+  "version": "1.0.0",
+  "description": "Demo app A - used to show Docker layer caching and parallel builds",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"no tests - demo app\" && exit 0"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "lodash": "^4.17.21"
+  }
+}
