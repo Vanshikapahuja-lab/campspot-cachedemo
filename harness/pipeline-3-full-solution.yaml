@@ -1,14 +1,14 @@
 pipeline:
   name: dlc-demo-3-full-solution
   identifier: dlc_demo_3_full_solution
-  projectIdentifier: YOUR_PROJECT_ID
-  orgIdentifier: YOUR_ORG_ID
+  projectIdentifier: CampspotDemos
+  orgIdentifier: InternsSandbox
   tags: {}
   properties:
     ci:
       codebase:
-        connectorRef: YOUR_CODE_REPO_CONNECTOR_ID
-        repoName: YOUR_REPO_NAME
+        connectorRef: campspotdemoghcr
+        repoName: Campspot-cachedemo
         build: <+input>
   stages:
     - parallel:
@@ -34,8 +34,8 @@ pipeline:
                       name: Build app-a (cached + parallel)
                       identifier: build_app_a_full
                       spec:
-                        connectorRef: YOUR_GHCR_CONNECTOR_ID
-                        repo: ghcr.io/YOUR_GITHUB_USERNAME/dlc-demo-app-a
+                        connectorRef: campspotdemoghcr
+                        repo: ghcr.io/Vanshikapahuja-lab/dlc-demo-app-a
                         dockerfile: app-a/Dockerfile.cachemount
                         context: app-a
                         caching: true
@@ -66,8 +66,8 @@ pipeline:
                       name: Build app-b (cached + parallel)
                       identifier: build_app_b_full
                       spec:
-                        connectorRef: YOUR_GHCR_CONNECTOR_ID
-                        repo: ghcr.io/YOUR_GITHUB_USERNAME/dlc-demo-app-b
+                        connectorRef: campspotdemoghcr
+                        repo: ghcr.io/Vanshikapahuja-lab/dlc-demo-app-b
                         dockerfile: app-b/Dockerfile.cachemount
                         context: app-b
                         caching: true
@@ -98,8 +98,8 @@ pipeline:
                       name: Build app-c (cached + parallel)
                       identifier: build_app_c_full
                       spec:
-                        connectorRef: YOUR_GHCR_CONNECTOR_ID
-                        repo: ghcr.io/YOUR_GITHUB_USERNAME/dlc-demo-app-c
+                        connectorRef: campspotdemoghcr
+                        repo: ghcr.io/Vanshikapahuja-lab/dlc-demo-app-c
                         dockerfile: app-c/Dockerfile.cachemount
                         context: app-c
                         caching: true
