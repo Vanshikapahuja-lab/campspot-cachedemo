@@ -31,7 +31,7 @@ pipeline:
                 steps:
                   - step:
                       type: BuildAndPushDockerRegistry
-                      name: Build app-a (cached + parallel)
+                      name: Build app a cached and parallel
                       identifier: build_app_a_full
                       spec:
                         connectorRef: campspotdemoghcr
@@ -63,7 +63,7 @@ pipeline:
                 steps:
                   - step:
                       type: BuildAndPushDockerRegistry
-                      name: Build app-b (cached + parallel)
+                      name: Build app b cached and parallel
                       identifier: build_app_b_full
                       spec:
                         connectorRef: campspotdemoghcr
@@ -95,7 +95,7 @@ pipeline:
                 steps:
                   - step:
                       type: BuildAndPushDockerRegistry
-                      name: Build app-c (cached + parallel)
+                      name: Build app c cached and parallel
                       identifier: build_app_c_full
                       spec:
                         connectorRef: campspotdemoghcr
