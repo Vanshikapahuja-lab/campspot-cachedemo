@@ -34,7 +34,7 @@ pipeline:
                   identifier: build_app_a_cached
                   spec:
                     connectorRef: campspotdemoghcr
-                    repo: ghcr.io/Vanshikapahuja-lab/dlc-demo-app-a
+                    repo: ghcr.io/vanshikapahuja-lab/dlc-demo-app-a
                     dockerfile: app-a/Dockerfile.cachemount
                     context: app-a
                     caching: true
