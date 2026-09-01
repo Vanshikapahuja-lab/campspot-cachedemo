@@ -41,9 +41,10 @@ pipeline:
                         caching: true
                         tags:
                           - full-<+pipeline.sequenceId>
+                        buildArgs:
+                          BUILDKIT_INLINE_CACHE: "1"
                         envVariables:
                           PLUGIN_NO_PUSH: "true"
-                          PLUGIN_BUILDX_OPTIONS: "--build-arg BUILDKIT_INLINE_CACHE=1"
         - stage:
             name: Build app-b
             identifier: Build_app_b_parallel
@@ -73,9 +74,10 @@ pipeline:
                         caching: true
                         tags:
                           - full-<+pipeline.sequenceId>
+                        buildArgs:
+                          BUILDKIT_INLINE_CACHE: "1"
                         envVariables:
                           PLUGIN_NO_PUSH: "true"
-                          PLUGIN_BUILDX_OPTIONS: "--build-arg BUILDKIT_INLINE_CACHE=1"
         - stage:
             name: Build app-c
             identifier: Build_app_c_parallel
@@ -105,6 +107,7 @@ pipeline:
                         caching: true
                         tags:
                           - full-<+pipeline.sequenceId>
+                        buildArgs:
+                          BUILDKIT_INLINE_CACHE: "1"
                         envVariables:
                           PLUGIN_NO_PUSH: "true"
-                          PLUGIN_BUILDX_OPTIONS: "--build-arg BUILDKIT_INLINE_CACHE=1"
