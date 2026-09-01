@@ -8,7 +8,7 @@
     "test": "echo \"no tests - demo app\" && exit 0"
   },
   "dependencies": {
-    "express": "^4.21.0",
+    "express": "^4.21.2",
     "lodash": "^4.17.21"
   }
 }
