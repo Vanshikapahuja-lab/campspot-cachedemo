@@ -35,7 +35,7 @@ pipeline:
                       identifier: build_app_a_full
                       spec:
                         connectorRef: campspotdemoghcr
-                        repo: ghcr.io/Vanshikapahuja-lab/dlc-demo-app-a
+                        repo: ghcr.io/vanshikapahuja-lab/dlc-demo-app-a
                         dockerfile: app-a/Dockerfile.cachemount
                         context: app-a
                         caching: true
@@ -67,7 +67,7 @@ pipeline:
                       identifier: build_app_b_full
                       spec:
                         connectorRef: campspotdemoghcr
-                        repo: ghcr.io/Vanshikapahuja-lab/dlc-demo-app-b
+                        repo: ghcr.io/vanshikapahuja-lab/dlc-demo-app-b
                         dockerfile: app-b/Dockerfile.cachemount
                         context: app-b
                         caching: true
@@ -99,7 +99,7 @@ pipeline:
                       identifier: build_app_c_full
                       spec:
                         connectorRef: campspotdemoghcr
-                        repo: ghcr.io/Vanshikapahuja-lab/dlc-demo-app-c
+                        repo: ghcr.io/vanshikapahuja-lab/dlc-demo-app-c
                         dockerfile: app-c/Dockerfile.cachemount
                         context: app-c
                         caching: true
